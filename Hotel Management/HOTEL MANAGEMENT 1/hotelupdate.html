@@ -1,0 +1,77 @@
+
+   <!DOCTYPE html>
+<html>
+  <head>
+    <style>
+  input[type=text], select {
+          width: 50%;
+          padding: 12px 20px;
+          margin: 8px 0;
+          display: inline-block;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          box-sizing: border-box;
+        }
+        input[type=submit] {
+            width: 100%;
+            background-color: #4CAF50;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+button:hover {
+  opacity: 0.8;
+}
+
+.cancelbtn {
+  width: auto;
+  padding: 10px 18px;
+  background-color: #f44336;
+}
+
+       div {
+            border-radius: 5px;
+            background-color: #f2f2f2;
+            padding: 20px;
+        }
+
+    </style>
+</head>
+    <body>
+    <h1 style=" top: 8px;
+        left: 16px;color:rgb(128, 25, 25);padding:0px; font-size: 60px;"><b>Infinity...</b></h1>
+       <marquee behavior="scroll" direction="left"  style=" top: 8px;
+        left: 16px;color:rgb(37, 7, 65);padding:0px; font-size: 40px;">To Add Your New Hotel ...please Fill up the below form.......</marquee>
+
+<div>
+  <form name="myForm" action="Update.php" method="post">
+
+    <label>Quarentine center</label><br>
+        <input type="radio" id="qua1" name="qua1" value="1"/>Yes<br>
+        <input type="radio" id="qua1" name="qua1" value="0"/>No<br>
+
+     <label>Available</label><br>
+        <input type="radio" id="avail" name="avail" value="1"/>Yes<br>
+        <input type="radio" id="avail" name="avail" value="0"/>No<br>
+
+    <label for="hrent">Hotel rent per day: </label>
+    <input type="text" id="hrent" name="hrent" placeholder="Rent per day.."><br>
+
+    <label>Want to delete your hotel from our website:</label><br>
+    <input type="radio" id="del" name="del" value="1"/>Yes<br>
+    <input type="radio" id="del" name="del" value="0"/>No<br>
+
+      <input type="checkbox" checked="checked" name="terms"> I accept terms & conditions
+    </label>
+    <input type="submit" name = "submit"  value="UPDATE">
+      <div class="container" style="background-color:#f1f1f1">
+        <button type="reset" value= "Reset" class="cancelbtn">Cancel</button>
+    </div>
+
+  </form>
+</div>
+</body>
+</html>

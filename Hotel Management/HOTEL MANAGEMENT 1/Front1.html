@@ -1,0 +1,474 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+    <title>Infinity India's Most Trusted Hotel Booking Site</title>
+    <style type="text/css">
+        .blinking{
+            animation: blinkingText 1s infinite;
+            font-family: futura;
+            font-style: italic;
+            width: 100%;
+            margin: 0 auto;
+            text-align: center;
+            color: white;
+            font-size: 45px;
+            background-color: #fc030b;
+                
+        }
+        @keyframes blinkingText{
+            from{
+                opacity: 1;
+                color: yellow
+            }
+            to{
+                opacity: 0;
+                color: white;
+            }
+            0%{
+                opacity: 0%
+            }
+            50%{
+                opacity: .5;
+            }
+            100%{
+                opacity: 1%
+            }
+        }
+    /*.bg {
+        background-image: url(image/Front/bg.jpg);
+        background-size: cover;
+      }*/
+    input[type=text], select {
+        width: 75%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid rgb(204, 204, 204);
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+    * {box-sizing:border-box}
+
+/* Slideshow container */
+.slideshow-container {
+  max-width: 1000px;
+  position: relative;
+  margin: auto;
+}
+
+/* Hide the images by default */
+.mySlides {
+  display: none;
+}
+
+/* Next & previous buttons */
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  margin-top: -22px;
+  padding: 16px;
+  color: rgb(255, 255, 255);
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+  background-color: rgba(0,0,0,0.8);
+}
+
+/* Caption text */
+.text {
+  color: #070925e1;
+  font-size: 30px;
+  padding: 8px 12px;
+  position: absolute;
+  bottom: 8px;
+  width: 100%;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* Number text (1/3 etc) */
+.numbertext {
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+}
+
+/* The dots/bullets/indicators */
+.dot {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color:   rgb(48, 5, 10);
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active, .dot:hover {
+  background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1.5s;
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@-webkit-keyframes fade {
+  from {opacity: .4}
+  to {opacity: 1}
+}
+
+@keyframes fade {
+  from {opacity: .4}
+  to {opacity: 1}
+}
+/*****for every town*****************/
+ul {
+ margin: 0px;
+ padding: 0px;
+ list-style: none;
+ font-family: arial;
+}
+
+ul li {
+ float: left;
+ width: 200px;
+ height: 40px;
+ opacity: .8;
+ line-height: 40px;
+ text-align: center;
+ font-size: 15px;
+ background-color: rgb(219, 75, 75);
+
+}
+
+ul li a {
+ text-decoration: none;
+ color: white;
+ display: block;
+}
+
+ul li a:hover {
+ background-color: green;
+}
+
+ul li ul li{
+ display: none;
+ background-color: black;
+}
+
+ul li:hover ul li {
+ display: block;
+
+}
+
+/*for login button*/
+.dropbtn {
+  background-color:rgb(255, 255, 255);
+  color:rgb(89, 105, 18);
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.dropbtn:hover, .dropbtn:focus {
+  background-color: #2980B9;
+}
+
+.dropdown {
+  position: absolute;
+  top: 40px;
+  right: 16px;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  overflow: auto;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown a:hover {background-color: rgb(22, 34, 8);}
+
+/********************for admin corner********************/
+.dropbtn1 {
+  background-color:rgb(255, 255, 255);
+  color:rgb(89, 105, 18);
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.dropbtn1:hover, .dropbtn1:focus {
+  background-color: #2980B9;
+}
+
+.dropdown1 {
+  position: absolute;
+  top: 70px;
+  right: 16px;
+  display: inline-block;
+}
+
+.dropdown-content1 {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  overflow: auto;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content1 a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown1 a:hover {background-color: rgb(22, 34, 8);}
+
+.show {display: block;}
+</style>
+<script>
+function validateForm() {
+        var x = document.forms["search"]["srch"].value;
+        if (x == "") {
+          alert("place name is missing!!please put place name");
+          return false;
+        }
+}
+    </script>
+    </head>
+    <body class ="bg">
+      <div>
+        <h1 style=" top: 8px;
+        left: 16px;color:rgb(128, 25, 25);padding:0px; font-size: 60px;"><b>Infinity...</b></h1><span class="blinking">5% Discount after 5 bookings 10% Discount after 10 bookings</span>
+        <h3><i>Welcome to Trusted hotels booking site....
+        </i></h3>
+       
+
+        <div class="dropdown">
+          <button onclick="myFunction()" class="dropbtn">ADMIN CORNER</button>
+          <div id="myDropdown" class="dropdown-content">
+            <a href="hotelmanagerlogin.html">Partner Login</a>
+            <a href="hotelmanagersignup.html">Want to be Partner?</a>
+          </div>
+        </div>
+        <div class="dropdown1">
+          <button onclick="myFunction1()" class="dropbtn1">LOGIN or SIGNUP</button>
+          <div id="myDropdown1" class="dropdown-content1">
+            <a href="loginpage.html">User Login</a>
+            <a href="signuppage.html">User Signup</a>
+          </div>
+        </div>
+      
+        
+    </div>
+        <ul>
+          <li><a href="Bangalore.php">Bangalore</a>
+            <ul>
+              <li><a href="Hebbal.php">Hebbal</a></li>
+              <li><a href="kormangala.php">Kormangala</a></li>
+              <li><a href="Mg Road.php">Mg Road</a></li>
+              <li><a href="Marathali.php">Marathali</a></li>
+             </ul>
+          </li>
+          <li><a href="Hyderabad.php">Hyderabad</a>
+           <ul>
+            <li><a href="Secuderabad.php">Secuderabad</a></li>
+            <li><a href="Mehdipatnam.php">Mehdipatnam</a></li>
+            <li><a href="Ameerpet.php">Ameerpet</a></li>
+            <li><a href="Gachibowli.php">Gachibowli</a></li>
+           </ul>
+          </li>
+          <li><a href="kolkata.php">Kolkata</a>
+           <ul>
+            <li><a href="Dumdum.php">Dumdum</a></li>
+            <li><a href="Park Street.php">Park Street</a></li>
+            <li><a href="Esplanade.php">Esplanade</a></li>
+            <li><a href="Saltlake.php">Saltlake</a></li>
+            <li><a href="Newtown.php">Newtown</a></li>
+           </ul>
+          </li>
+          <li><a href="New Delhi.php">New Delhi</a>
+           <ul>
+            <li><a href="New Delhi Railway.php">New Delhi Railway Station</a></li>
+            <li><a href="Karol Bagh.php">Karol Bagh</a></li>
+            <li><a href="Delhi Airport.php">Delhi Airport</a></li>
+           </ul>
+          </li>
+          <li><a href="Mumbai.php">Mumbai</a>
+            <ul>
+              <li><a href="Juhu.php">Juhu</a></li>
+              <li><a href="Thane.php">Thane</a></li>
+              <li><a href="Powai.php">Powai</a></li>
+              <li><a href="Navi Mumbai.php">Navi Mumbai</a></li>
+              <li><a href="Mumbai Airport.php">Mumbai Airport</a></li>
+             </ul>
+          </li>
+          <li><a href="Chennai.php">Chennai</a>
+            <ul>
+              <li><a href="T nagar.php">T nagar</a></li>
+              <li><a href="Chennai central railway station.php">Chennai central railway station</a></li>
+              <li><a href="ECR Beach.php">ECR Beach</a></li>
+              <li><a href="Adyar.php">Adyar</a></li>
+              
+             </ul>
+          </li>
+         </ul>
+        
+        <div style="color:rgb(75, 10, 10);padding:80px;">
+            <p><b>Find your ideal place to stay.....</b></p>
+            <p> Try searching for your favourite place....</p>
+            <form name="search" onsubmit="return validateForm()" action = "search.php" method = "POST">
+            <input type="text" id="srch" name="srch" placeholder="please enter your place or city name"><br>
+            <input type="submit" id ="submit" value="submit">
+            </form>
+
+        <!-- Slideshow container -->
+<div class="slideshow-container">
+
+    <!-- Full-width images with number and caption text -->
+    <div class="mySlides fade">
+      <div class="numbertext">1 / 4</div>
+      <img src="image/Front/Delhi.jpg" style="width:100%">
+      <div class="text">WELCOME TO DELHI</div>
+    </div>
+  
+    <div class="mySlides fade">
+      <div class="numbertext">2 / 4</div>
+      <img src="image/Front/west-bengal-kolkata-148318639273-orijgp.jpg" style="width:100%">
+      <div class="text">WELCOME TO KOLKATA</div>
+    </div>
+  
+    <div class="mySlides fade">
+      <div class="numbertext">3 / 4</div>
+      <img src="image/Front/karnataka-bangalore-149527461747o.jpg" style="width:100%">
+      <div class="text">WELCOME TO BANGALORE</div>
+    </div> 
+
+    <div class="mySlides fade">
+        <div class="numbertext">4 / 4</div>
+        <img src="image/Front/GettyImages-1008831236-5c65d6bf4cedfd00014aa310.jpg" style="width:100%">
+        <div class="text">WELCOME TO MUMBAI </div>
+      </div>
+    
+  
+    <!-- Next and previous buttons -->
+    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+  </div>
+  <br>
+  
+  <!-- The dots/circles -->
+  <div style="text-align:center">
+    <span class="dot" onclick="currentSlide(1)"></span>
+    <span class="dot" onclick="currentSlide(2)"></span>
+    <span class="dot" onclick="currentSlide(3)"></span>
+    <span class="dot" onclick="currentSlide(4)"></span>
+  </div>
+  </div>
+
+  <script>
+    var slideIndex = 1;
+    showSlides(slideIndex);
+    
+    function plusSlides(n) {
+      showSlides(slideIndex += n);
+    }
+    
+    function currentSlide(n) {
+      showSlides(slideIndex = n);
+    }
+    
+    function showSlides(n) {
+      var i;
+      var slides = document.getElementsByClassName("mySlides");
+      var dots = document.getElementsByClassName("dot");
+      if (n > slides.length) {slideIndex = 1}    
+      if (n < 1) {slideIndex = slides.length}
+      for (i = 0; i < slides.length; i++) {
+          slides[i].style.display = "none";  
+      }
+      for (i = 0; i < dots.length; i++) {
+          dots[i].className = dots[i].className.replace(" active", "");
+      }
+      slides[slideIndex-1].style.display = "block";  
+      dots[slideIndex-1].className += " active";
+    }
+    /* for LOGIN or SIGNUP*/
+/* When the user clicks on the button, 
+toggle between hiding and showing the dropdown content */
+function myFunction() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
+
+// Close the dropdown if the user clicks outside of it
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+
+
+/****************js for admin corner******************/
+function myFunction1() {
+  document.getElementById("myDropdown1").classList.toggle("show");
+}
+
+// Close the dropdown if the user clicks outside of it
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn1')) {
+    var dropdowns = document.getElementsByClassName("dropdown-content1");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+
+    </script>
+    </body>
+    </html>

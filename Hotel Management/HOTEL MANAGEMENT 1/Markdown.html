@@ -1,0 +1,1449 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Markdown.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="hotel-management-web-application">HOTEL MANAGEMENT WEB APPLICATION</h1>
+<h4 id="submitted-by">SUBMITTED BY</h4>
+<pre><code> Arghya Nayek
+ Department:Information Technology
+ College Name:Government College of Engineering and Textile Technology,Serampore
+
+ Shritama Ghosh
+ Department:Electronics and Communication Engineering
+ College Name:Ramkrishna Mahato Government Engineering College(Earlier name Purulia Government Engineering College) 
+</code></pre>
+<h4 id="under-the-guidance-of">UNDER THE GUIDANCE OF</h4>
+<pre><code>     Mr.Asit Deva
+     Mr.Hemant Baid
+     Mr.Soumen De
+     MR. Raveendran Vasudevan      
+</code></pre>
+<p>Year:2020</p>
+<h4 id="acknowledgement">ACKNOWLEDGEMENT</h4>
+<p>The Internship opportunity I have with Siemens was a great chance for learning and professional developement. Therefore I consider myself a very happy individualas I was provided with an opportunity to be a part of it.I am also grateful for having a chance to meet so many wonderful people and personalities who helped me enough who help me through this internship period.</p>
+<h4 id=""></h4>
+<p>I would like to express my sincere gratitude to my supervisors Mr. Asit Deva , Mr. Hemant Baid, Mr. Soumen De , Mr.Raveendran Vasudevan for providing their invaluable guidance, comments and suggestions throughout the course of the project.</p>
+<h4 id=""></h4>
+<p>I would specially thank Mr. Asit Deva for constantly motivating me to work harder and for referring the required lessons and suggestions and Mr. Hemant Baid for providing me an overview of the documentation and other necessary details.</p>
+<h4 id=""></h4>
+<p>Also I would like to thank Mr. Soumen De for his assistance and  Mr. Raveendran Vasudevan for his help during the preparation of the project. My sincere thanks also go to all the representatives of Siemens Scholarship Program for their kind cooperation in all spheres during my project work.</p>
+<h4 id=""></h4>
+<p>Last but not the least, I thank my parents and all my family members for their support and motivation they have provided throughout my project work.</p>
+<ul>
+<li>Arghya Nayek</li>
+<li>Shritama Ghosh</li>
+</ul>
+<h4 id="declaration">DECLARATION</h4>
+<p>We declare that this written submission represents our ideas in our own words and where others' ideas or words have been included, We have adequately cited and referenced the original sources. We also declare that we have adhered to all principles of academic honesty and integrity and have   not misrepresented or fabricated or falsified any idea/data/fact/source in my submission.We understand that any violation of the above will be cause for disciplinary action and can also evoke  penal action from the sources which have thus not been properly cited or from whom proper permission has not been taken when needed.</p>
+<ul>
+<li>Arghya Nayek</li>
+<li>Shritama Ghosh</li>
+</ul>
+<h2 id="acontent"><strong>A.Content</strong></h2>
+<h2 id="1high-level-description"><strong>1.High Level Description</strong></h2>
+<h2 id="2technologies-used-and-local-setup-details"><strong>2.Technologies Used and Local Setup Details</strong></h2>
+<h2 id="3design-docs-and-diagrams"><strong>3.Design Docs and Diagrams</strong></h2>
+<h3 id="31-use-case-diagram"><strong>3.1 Use Case Diagram</strong></h3>
+<h3 id="32-sequence-diagram"><strong>3.2 Sequence Diagram</strong></h3>
+<h4 id="321-sequence-daigram-for-log-in-for-a-customer-user">3.2.1 Sequence Daigram for Log-In for a Customer User</h4>
+<h3 id="33-activity-daigram"><strong>3.3 Activity Daigram</strong></h3>
+<h4 id="331-activity-daigram-for-user-login">3.3.1 Activity Daigram for User Login</h4>
+<h3 id="34-component-daigram"><strong>3.4 Component Daigram</strong></h3>
+<h2 id="4-user-journeys"><strong>4. User Journeys</strong></h2>
+<h2 id="1-high-level-description"><strong>1. High Level Description</strong></h2>
+<h2 id="introduction">INTRODUCTION</h2>
+<p>I have tried my best to make the complicated process of Online Hotel Management System as simple as possible using Structured &amp; Modular technique &amp; Menu oriented interface. I have tried to design the software in such a way that user may not have any difficulty in using this package &amp; further expansion is possible without much effort. Even though I cannot claim that this work to be entirely exhaustive, the main purpose of my exercise is perform each Employee’s activity in computerized way rather than manually which is time consuming.</p>
+<h4 id=""></h4>
+<p>I am confident that this software package can be readily used by non-programmingpersonal avoiding human handled chance of error. This project is used by two types of users.</p>
+<h4 id=""></h4>
+<p>i.	Online Users.
+ii.	Administrator (management of the Hotel). Online users can see the required articles or news</p>
+<h4 id=""></h4>
+<p>Administrator can maintain daily updates in the hotel records. Administrator is must be an authorized user. He can further change the password. There is the facility for passwordrecovery, logout etc.
+The main aim of the entire activity is to automate the process of day to day activities of Hotel like Room activities, Admission of a New Customer, Assign a room according to customer’s demand, checkout of a computer and releasing the room etc.</p>
+<h4 id=""></h4>
+<p>The limited time and resources have restricted us to incorporate, in this project, only a main activities that are performed in a HOTEL Management System, but utmost care has been taken to make the system efficient and user friendly.</p>
+<h4 id=""></h4>
+<p>“HOTEL Management System” has been designed to computerized the following functions that are performed by the system:</p>
+<ul>
+<li>Hotel Detail Functions</li>
+<li>Opening a Hotel</li>
+<li>Modification to Hotel assigned</li>
+<li>Check-in and check-out Detail Functions</li>
+<li>Admission of New customer</li>
+<li>Check-out of customer</li>
+<li>Room assigning related to customer’s need.</li>
+<li>Statement of Customer Details</li>
+<li>Check-in customer</li>
+<li>Check-out customer</li>
+<li>Room Details</li>
+<li>Individual customer Report</li>
+</ul>
+<h2 id="problem-statement">Problem statement:-</h2>
+<p>The project hotel management system is a web based application that allows the hotel manager(Admin Corner) to handle all hotel activities online. Interactive GUI and the ability to manage various hotel bookings and rooms make this system very flexible and convenient. The hotel manager is a very busy person and does not have the time to sit and manage the entire activities manually on paper. This application gives him the power and flexibility to manage the entire system from a single online system. Hotel management project provides room booking, staff management and other necessary hotel management features. The system allows the manager to post available rooms in the system. Customers can view and book room online. Admin has the power of either approving or disapproving the customer's booking request. Other hotel services can also be viewed by the customers and can book them too.
+The system is hence useful for both customers and managers to portably manage the hotel activities.</p>
+<h4 id="objective">objective:-</h4>
+<p>During the past several decades personnel function has been transformed from a relatively obscure record keeping staff to central and top level management function. There are many factors that have influenced this transformation like technological advances, professionalism, and general recognition of human beings as most important resources.</p>
+<ul>
+<li>
+<p>A computer based management system is designed to handle all the primary information required to calculate monthly statements. Separate database is maintained to handle all the details required for the correct statement calculation and generation.</p>
+</li>
+<li>
+<p>This project intends to introduce more user friendliness in the various activities such as record updation, maintenance, and searching.</p>
+</li>
+<li>
+<p>The searching of record has been made quite simple as all the details of the customer can be obtained by simply keying in the identification of that customer.</p>
+</li>
+<li>
+<p>Similarly, record maintenance and updation can also be accomplished by using the identification of the customer with all the details being automatically generated. These details are also being promptly automatically updated in the master file thus keeping the record absolutely up-to-date.</p>
+</li>
+<li>
+<p>The entire information has maintained in the database or Files and whoever wants to retrieve can’t retrieve, only authorization user can retrieve the necessary information which can be easily be accessible from the file.</p>
+</li>
+<li>
+<p>The main objective of the entire activity is to automate the process of day to day activities of Hotel like:</p>
+</li>
+</ul>
+<ol>
+<li>Room activities,</li>
+<li>Admission of a New Customer,</li>
+<li>Assign a room according to customer’s demand,</li>
+<li>Checkout of a computer and releasing the room</li>
+<li>Advance online bookings.</li>
+<li>Online Cancellation.</li>
+<li>List of Regular customers.</li>
+<li>Email facility.</li>
+<li>Feedbacks
+This project have some more features:</li>
+</ol>
+<p>•	System Connectivity</p>
+<p>•	No data duplication
+•	No Paper Work Required</p>
+<p>•	Time Efficient</p>
+<p>•	Cost Efficient</p>
+<p>•	Automatic data validation</p>
+<p>•	User friendly environment</p>
+<p>•	Data security and reliability</p>
+<p>•	Fast data insertion &amp; retrieval</p>
+<p>•	Easy performance check</p>
+<h2 id="advantages">Advantages:</h2>
+<ul>
+<li>Sometimes it happens that the rooms get booked soon when one visits the place therefore user can make advance booking using this system.</li>
+<li>It saves user time in search of rooms.</li>
+<li>The system is useful as it calculates an exact cost for requested number of days.</li>
+<li>It saves organization resources and expenses.</li>
+<li>This system is effective and saves time and cost of users.</li>
+<li>Easy registration
+We are implementing a Web Service that will allow a user to :
+<h4 id="login-page">Login Page -</h4>
+<ul>
+<li>Customer</li>
+<li>Admin(Hotel Managers)</li>
+</ul>
+<h4 id="sign-up">Sign Up -</h4>
+<ul>
+<li>Customer</li>
+<li>Admin(Hotel Managers)</li>
+</ul>
+</li>
+</ul>
+<h4 id="log-out">Log out -</h4>
+<ul>
+<li>Customer
+<ul>
+<li>Admin(Hotel Manager)</li>
+</ul>
+</li>
+<li>Listing of Available Hotels</li>
+<li>Basic Listing of available hotels on a given day</li>
+<li>Availability of Quarantine Center</li>
+<li>Availabilty of Monitoring System</li>
+<li>Booking of Hotels</li>
+<li>Cancelling the booking hotels if Customer want to cancel the booking  of hotels in the specific day</li>
+<li>After cancelling any booking hotels they can book hotel to follow same procedure on same day or another day as Customer wish.</li>
+<li>Customer can choice different hotels in
+one place.</li>
+</ul>
+<h4 id="forget-password">Forget Password:-</h4>
+<p>If any customer forget their password in login time then they click forget password button and a new page open then when customer give their emailid ,their password is shown in our website.</p>
+<h4 id="update-hotels">Update hotels:-</h4>
+<p>Any Admin to enter our website by registered email id and password to add any new hotel or remove any hotel</p>
+<h4 id="add-hotels">Add Hotels</h4>
+<ul>
+<li>Admin(Hotel Managers)</li>
+</ul>
+<h4 id="booking-history">Booking History</h4>
+<ul>
+<li>Admin(Hotel Managers)</li>
+</ul>
+<h4 id="unique-advantage">Unique Advantage:-</h4>
+<p>Any Customers who book hotels by our website frequently ,they have a unique advantage by our side.</p>
+<h4 id="feedback-page">Feedback page:-</h4>
+<p>Customers have a feedback mail after check-out from hotels to give any feedback message to us ,they log in by their registered email and password.</p>
+<ul>
+<li>Before check-in time every customer has a mail and from our side also before check-out time ,they have a mail from our site because of reminder.</li>
+</ul>
+<h4 id="admin-login-and-admin-dashboard">Admin login and admin dashboard:</h4>
+<p>It has admin login who has the authority of the system and he is responsible for approving and disapproving the users request for room booking. Admin can add and delete notifications and updates in the system.</p>
+<h4 id="user-registration">User Registration:</h4>
+<p>There is user registration form available where new users can create their account by providing required information to the system.</p>
+<h4 id="booking-system">Booking System:</h4>
+<p>User can request for the table booking for a particular date and time.</p>
+<h4 id="approvingdisapproving-request">Approving/Disapproving Request:</h4>
+<p>The booking requests are directly sent
+with respective user details and therefore make decisions for cancelling the requests.</p>
+<h2 id="2-technologies-used-and-local-setup-details"><strong>2. Technologies Used and Local Setup Details</strong></h2>
+<h4 id="1xampp-software">1.Xampp software:-</h4>
+<p>XAMPP is a free and open-source cross-platform web server solution stack package developed by Apache Friends, consisting mainly of the Apache HTTP Server, MariaDB database, and interpreters for scripts written in the PHP and Perl programming languages.</p>
+<h4 id="2-visual-studio-code">2. VISUAL STUDIO CODE:-</h4>
+<p>(Visual Studio Code is a source-code editor developed by Microsoft for Windows, Linux and macOS. It includes embedded Git and support for debugging, syntax highlighting, intelligent code completion, snippets, and code refactoring.)</p>
+<h4 id="3-internet-explorer">3. INTERNET EXPLORER :-</h4>
+<p>(graphical web browsers developed by Microsoft and included in the Microsoft Windows line of operating systems)</p>
+<h2 id="coding-languages">CODING LANGUAGES</h2>
+<h4 id="1-html">1.	HTML</h4>
+<p>(Hypertext Markup Language is the standard markup language for documents designed to be displayed in a web browser)</p>
+<h3 id="2-css">2.	CSS</h3>
+<p>(Cascading Style Sheets is a style sheet language used for describing the presentation of a document written in a markup language like HTML)</p>
+<h4 id="3-javascript">3.	JAVASCRIPT</h4>
+<p>(JavaScript (JS) is a lightweight, interpreted, or just-in-time compiled programming language with first-class functions. While it is most well-known as the scripting language for Web pages)</p>
+<h4 id="4php">4.PHP</h4>
+<p>(PHP is a widely used server-side programming language that’s become increasingly fast and powerful over the years. PHP works well with HTML and databases, making it a great language for anyone interested in building dynamic web applications.)</p>
+<h4 id="5mysql">5.Mysql</h4>
+<p>(Mysql is a standard language for storing, manipulating and retrieving data in databases.)</p>
+<h2 id="3-design-docs-and-diagrams"><strong>3. Design Docs and Diagrams</strong></h2>
+<h3 id="31-use-case-diagram"><strong>3.1. Use Case Diagram</strong></h3>
+<ul>
+<li>
+<p>List of Users</p>
+<ul>
+<li>Customer</li>
+<li>Admin</li>
+</ul>
+</li>
+<li>
+<p>Use-Cases</p>
+<ul>
+<li>Customer can Log-in</li>
+<li>Admin can log-in</li>
+<li>Customer can Sign Up</li>
+<li>Admin can Sign Up</li>
+<li>Customer can Log out</li>
+<li>Admin can Log-out</li>
+<li>Customer can make a booking</li>
+<li>Customer can cancel a booking</li>
+<li>Customer can update a booking</li>
+<li>Admin can update hotels</li>
+<li>Admin can add hotels.</li>
+<li>Customer can use Forget Password facility</li>
+<li>Frequent Customer has unique Adavantage</li>
+<li>Customer has feedback mail after  check-out</li>
+<li>Customer can check-in</li>
+</ul>
+</li>
+<li>
+<p>Customer can check-out</p>
+</li>
+<li>
+<p>Admin check feedback mail</p>
+</li>
+</ul>
+<pre class="hljs"><code><div>@startuml
+left to right direction
+actor &quot;Customer&quot; as Customer
+actor &quot;Admin&quot; as Admin
+package HotelManagementSystem {
+  usecase &quot;Sign-Up&quot; as Cust_AD_UC1
+  usecase &quot;Log-In&quot; as Cust_AD_UC2
+  usecase &quot;Log-out&quot; as Cust_AD_UC3 
+  usecase &quot;Feedback email&quot; as Cust_AD_UC4
+usecase &quot;Create-Booking&quot; as Cust_UC5
+  usecase &quot;Update-Booking&quot; as Cust_UC6
+  usecase &quot;Cancel-Booking&quot; as Cust_UC7
+usecase &quot;Forget password&quot; as Cust_UC8
+usecase &quot;unique advantage&quot; as Cust_UC9
+usecase &quot;check-in&quot; as Cust_UC10
+usecase &quot;check-out&quot; as Cust_UC11
+usecase &quot;Add-Hotel&quot; as AD_UC1
+usecase &quot;update-hotel&quot; as AD_UC2 
+usecase &quot;boooking-history&quot; as AD_UC3
+
+
+}
+Customer --&gt; Cust_AD_UC1
+Customer --&gt; Cust_AD_UC2
+Customer --&gt; Cust_AD_UC3
+Customer --&gt; Cust_AD_UC4
+Customer --&gt; Cust_UC5
+Customer --&gt; Cust_UC6 
+Customer --&gt; Cust_UC7 
+Customer --&gt; Cust_UC8 
+Customer --&gt; Cust_UC9 
+Customer --&gt; Cust_UC10
+Customer --&gt; Cust_UC11 
+Admin    --&gt; Cust_AD_UC1
+Admin   --&gt; Cust_AD_UC2
+Admin   --&gt;  Cust_AD_UC3
+Admin   --&gt; Cust_AD_UC4
+Admin   --&gt; AD_UC1
+Admin --&gt; AD_UC2
+Admin --&gt;AD_UC3
+
+@enduml
+</div></code></pre>
+<h3 id="32-sequence-daigram"><strong>3.2 Sequence Daigram</strong></h3>
+<h4 id="321-sequence-daigram-for-log-in-for-a-customer-user">3.2.1 Sequence Daigram for Log-In for a Customer User</h4>
+<pre class="hljs"><code><div>@startuml
+actor Customer #red
+
+Customer --&gt; UI : Open the UI
+UI --&gt; Customer : Responds back with the Home Page
+Customer --&gt; UI : Slects Login Page
+UI --&gt; Customer : Responds back with the Login Page
+Customer --&gt; UI : Fills in login details
+UI --&gt; API : Verify User Login
+API --&gt; Database : Check user passwrod
+alt Auth Passed
+
+    Database -&gt; API: Authentication Accepted
+    API -&gt; UI : Login Successful
+    UI -&gt; Customer : Login Successful Prompt
+
+else Auth Failed
+
+    Database -&gt; API: Authentication Failure
+    API -&gt; UI : Login Failed
+    UI -&gt; Customer : Retry page
+
+end
+
+@enduml
+</div></code></pre>
+<h4 id="322-sequence-daigram-for-log-in-for-an-admin-user">3.2.2 Sequence Daigram for Log-In for an Admin user</h4>
+<pre class="hljs"><code><div>@startuml
+actor Admin #red
+
+Admin --&gt; UI : Open the UI
+UI --&gt; Admin : Responds back with the Home Page
+Admin --&gt; UI : Slects Login Page
+UI --&gt; Admin : Responds back with the Login Page
+Admin --&gt; UI : Fills in login details
+UI --&gt; API : Verify User Login
+API --&gt; Database : Check user passwrod
+alt Auth Passed
+
+    Database -&gt; API: Authentication Accepted
+    API -&gt; UI : Login Successful
+    UI -&gt; Admin : Login Successful Prompt
+
+else Auth Failed
+
+    Database -&gt; API: Authentication Failure
+    API -&gt; UI : Login Failed
+    UI -&gt; Admin: Retry page
+
+end
+
+@enduml
+</div></code></pre>
+<h4 id="323-sequence-daigram-for-sign-up-for-a-customer-user">3.2.3 Sequence Daigram for Sign-up for a Customer User</h4>
+<pre class="hljs"><code><div>@startuml
+actor Customer #red
+
+Customer --&gt; UI : Open the UI
+UI --&gt; Customer : Responds back with the Home Page
+Customer --&gt; UI : Slects Signup Page
+UI --&gt; Customer : Responds back with the Signup Page
+Customer --&gt; UI : Fills in Signup details
+UI --&gt; API : Verify User Signup
+API --&gt; Database : Check all informations
+alt Auth Passed
+
+    Database -&gt; API: Authentication Accepted
+    API -&gt; UI : Signup Successful
+    UI -&gt; Customer : Signup Successful Prompt
+
+else Auth Failed
+
+    Database -&gt; API: Authentication Failure
+    API -&gt; UI : Signup Failed
+    UI -&gt; Customer : Retry page
+
+end
+
+@enduml
+</div></code></pre>
+<h4 id="324-sequence-daigram-for-sign-up-for-an-admin-user">3.2.4 Sequence Daigram for Sign-up for an Admin User</h4>
+<pre class="hljs"><code><div>@startuml
+actor Admin #red
+
+Admin--&gt; UI : Open the UI
+UI --&gt; Admin : Responds back with the Home Page
+Admin--&gt; UI : Slects Signup Page
+UI --&gt; Admin : Responds back with the Signup Page
+Admin--&gt; UI : Fills in Signup details
+UI --&gt; API : Verify User Signup
+API --&gt; Database : Check all informations
+alt Auth Passed
+
+    Database -&gt; API: Authentication Accepted
+    API -&gt; UI : Signup Successful
+    UI -&gt; Admin : Signup Successful Prompt
+
+else Auth Failed
+
+    Database -&gt; API: Authentication Failure
+    API -&gt; UI : Signup Failed
+    UI -&gt; Admin : Retry page
+
+end
+
+@enduml
+</div></code></pre>
+<h4 id="325-sequence-daigram-for-log-out-for-a-customer-user">3.2.5 Sequence Daigram for Log-out for a Customer User</h4>
+<pre class="hljs"><code><div>@startuml
+actor Customer #red
+
+Customer --&gt; UI : Open the UI
+UI --&gt; Customer : Responds back with the Home Page
+Customer --&gt; UI : Slects Log-out Page
+UI --&gt; Customer : Responds back with the Log-out Page
+Customer --&gt; UI : Fills in Log-out details
+UI --&gt; API : Verify User Log-out
+API --&gt; Database : Check  user password
+alt Auth Passed
+
+    Database -&gt; API: Authentication Accepted
+    API -&gt; UI : Log-out Successful
+    UI -&gt; Customer : Log-out Successful Prompt
+
+else Auth Failed
+
+    Database -&gt; API: Authentication Failure
+    API -&gt; UI : Log-out Failed
+    UI -&gt; Customer : Retry page
+
+end
+
+@enduml
+</div></code></pre>
+<h4 id="326-sequence-daigram-for-log-out-for-an-admin-user">3.2.6 Sequence Daigram for Log-out for an Admin User</h4>
+<pre class="hljs"><code><div>@startuml
+actor Admin #red
+
+Admin --&gt; UI : Open the UI
+UI --&gt; Admin : Responds back with the Home Page
+Admin --&gt; UI : Slects Logout Page
+UI --&gt; Admin : Responds back with the Log-out Page
+Admin --&gt; UI : Fills in Logout details
+UI --&gt; API : Verify User Logout
+API --&gt; Database : Check user password
+alt Auth Passed
+
+    Database -&gt; API: Authentication Accepted
+    API -&gt; UI : Logout Successful
+    UI -&gt; Admin : Logout Successful Prompt
+
+else Auth Failed
+
+    Database -&gt; API: Authentication Failure
+    API -&gt; UI : Logout Failed
+    UI -&gt; Admin : Retry page
+
+end
+
+@enduml
+</div></code></pre>
+<h4 id="327-sequence-daigram-for-create-booking-for-a-customer-user">3.2.7 Sequence Daigram for create booking for a Customer User</h4>
+<pre class="hljs"><code><div>@startuml
+actor Customer #red
+
+Customer --&gt; UI : Open the UI
+UI --&gt; Customer : Responds back with the Home Page
+Customer --&gt; UI : Slects create booking Page
+UI --&gt; Customer : Responds back with the create booking  Page
+Customer --&gt; UI : Fills in booking details
+UI --&gt; API : Verify User booking
+API --&gt; Database : Check all informations
+alt Auth Passed
+
+    Database -&gt; API: Authentication Accepted
+    Database -&gt; Admin: see booking hotel
+    API -&gt; UI : booking Successful
+    UI -&gt; Customer : booking Successful Prompt
+    
+
+else Auth Failed
+
+    Database -&gt; API: Authentication Failure
+    API -&gt; UI : booking Failed
+    UI -&gt; Customer : Retry page
+
+end
+
+@enduml
+</div></code></pre>
+<h4 id="328-sequence-daigram-for-update-booking-for-a-customer-user">3.2.8 Sequence Daigram for Update booking for a Customer User</h4>
+<pre class="hljs"><code><div>@startuml
+actor Customer #red
+
+Customer --&gt; UI : Open the UI
+UI --&gt; Customer : Responds back with the Home Page
+Customer --&gt; UI : Slects Update booking Page
+UI --&gt; Customer : Responds back with the update  booking  Page
+Customer --&gt; UI : Fills in update booking details
+UI --&gt; API : Verify User booking
+API --&gt; Database : Check all informations
+alt Auth Passed
+
+    Database -&gt; API: Authentication Accepted
+    API -&gt; UI : booking Successful
+    UI -&gt; Customer : booking Successful Prompt
+
+else Auth Failed
+
+    Database -&gt; API: Authentication Failure
+    API -&gt; UI : booking Failed
+    UI -&gt; Customer : Retry page
+
+end
+
+@enduml
+</div></code></pre>
+<h4 id="329-sequence-daigram-for-cancel-booking-for-a-customer-user">3.2.9 Sequence Daigram for cancel booking for a Customer User</h4>
+<pre class="hljs"><code><div>@startuml
+actor Customer #red
+
+Customer --&gt; UI : Open the UI
+UI --&gt; Customer : Responds back with the Home Page
+Customer --&gt; UI : Slects cancel booking Page
+UI --&gt; Customer : Responds back with the cancel booking  Page
+Customer --&gt; UI : Fills in booking details
+UI --&gt; API : Verify User booking
+API --&gt; Database : Check all informations
+alt Auth Passed
+
+    Database -&gt; API: Authentication Accepted
+    API -&gt; UI : booking cancelled Successful
+    UI -&gt; Customer : booking cancelled Successful Prompt
+
+else Auth Failed
+
+    Database -&gt; API: Authentication Failure
+    API -&gt; UI : booking cancelled Failed
+    UI -&gt; Customer : Retry page
+
+end
+
+@enduml
+</div></code></pre>
+<h4 id="3210-sequence-daigram-for-forget-password-for-a-customer-user">3.2.10 Sequence Daigram for Forget Password for a Customer User</h4>
+<pre class="hljs"><code><div>@startuml
+actor Customer #red
+
+Customer --&gt; UI : Open the UI
+UI --&gt; Customer : Responds back with the Home Page
+Customer --&gt; UI : Slects Forget Password Page
+UI --&gt; Customer : Responds back with the Forget Password  Page
+Customer --&gt; UI : Fills in user details
+UI --&gt; API : Verify User email
+API --&gt; Database : check email 
+alt Auth Passed
+
+    Database -&gt; API: Authentication Accepted
+    API -&gt; UI : password Showing
+    UI -&gt; Customer : password Showing Prompt
+
+else Auth Failed
+
+    Database -&gt; API: Authentication Failure
+    API -&gt; UI : Password showing Failed
+    UI -&gt; Customer : Retry page
+
+end
+
+@enduml
+</div></code></pre>
+<h4 id="3211-sequence-daigram-for-feedback-email-for-a-customer-user">3.2.11 Sequence Daigram for Feedback  email for a Customer User</h4>
+<pre class="hljs"><code><div>@startuml
+actor Customer #red
+
+Customer --&gt; UI : Open the UI
+UI --&gt; Customer : Responds back with the Home Page
+Customer --&gt; UI : Slects Feedback Page
+UI --&gt; Customer : Responds back with the Feedback  Page
+Customer --&gt; UI : Fills in all feedback information
+UI --&gt; API : Verify User email
+API --&gt; Database : Check all feedback informations
+alt Auth Passed
+
+    Database -&gt; API: Authentication Accepted
+    API -&gt; UI : Feedback submitted Successfully
+    UI -&gt; Customer : Feedback Submitted Successfully Prompt
+
+else Auth Failed
+
+    Database -&gt; API: Authentication Failure
+    API -&gt; UI :feedback submission Failed
+    UI -&gt; Customer : Retry page
+
+end
+
+@enduml
+</div></code></pre>
+<h4 id="3212-sequence-daigram-for-add-hotel-for-an-admin-user">3.2.12 Sequence Daigram for Add hotel for an Admin User</h4>
+<pre class="hljs"><code><div>@startuml
+actor Admin #red
+
+ADmin --&gt; UI : Open the UI
+UI --&gt; Admin : Responds back with the Add hotel Page
+Admin --&gt; UI : Slects Add hotel Page
+UI --&gt; Admin: Responds back with the Add hotel Page
+Admin--&gt; UI : Fills in all information choice Quarentaine center either add hotel to Quarentine center or not .
+UI --&gt; API : Verify User add hotel
+API --&gt; Database : Check all informations
+alt Auth Passed
+
+    Database -&gt; API: Authentication Accepted
+    API -&gt; UI : Hotel adding Sucessful
+    UI -&gt; Admin :Hotel adding Sucessful Prompt
+
+else Auth Failed
+
+    Database -&gt; API: Authentication Failure
+    API -&gt; UI : Hotel adding Failed
+    UI -&gt; Admin : Retry page
+
+end
+
+@enduml
+</div></code></pre>
+<h4 id="3213-sequence-daigram-for-update-hotel-for-an-admin-user">3.2.13 Sequence Daigram for update hotel for an Admin User</h4>
+<pre class="hljs"><code><div>@startuml
+actor Admin #red
+
+Admin --&gt; UI : Open the UI
+UI --&gt; Admin : Responds back with the hotel Page
+Admin --&gt; UI : Slects Update hotel Page
+UI --&gt; Admin : Responds back with the Update hotel  Page
+Admin --&gt; UI : Fills in hotel update information
+UI --&gt; API : Verify User Update hotel
+API --&gt; Database : Check all informations
+alt Auth Passed
+
+    Database -&gt; API: Authentication Accepted
+    API -&gt; UI : Hotel updating Successful
+    UI -&gt; Admin : Hotel updating Successful Prompt
+
+else Auth Failed
+
+    Database -&gt; API: Authentication Failure
+    API -&gt; UI : Hotel updating Failed
+    UI -&gt; Admin : Retry page
+
+end
+
+@enduml
+</div></code></pre>
+<h4 id="3214-sequence-daigram-for-booking-history-for-an-admin-user">3.2.14 Sequence Daigram for booking history for an Admin User</h4>
+<pre class="hljs"><code><div>@startuml
+actor Admin #red
+
+Admin --&gt; UI : Open the UI
+UI --&gt; Admin : Responds back with the booking history Page
+Admin --&gt; UI : Slects booking history Page
+UI --&gt; Admin : Responds back with the booking history Page
+Admin --&gt; UI : Check booking hitory page 
+UI --&gt; API : Verify User booking history
+API --&gt; Database : Check all informations
+alt Auth Passed
+
+    Database -&gt; API: Authentication Accepted
+    API -&gt; UI : see sucessful booking history page 
+    UI -&gt; Admin : booking history Successful Prompt
+
+else Auth Failed
+
+    Database -&gt; API: Authentication Failure
+    API -&gt; UI : Booking history page Failed
+    UI -&gt; Admin : Retry page
+
+end
+
+@enduml
+</div></code></pre>
+<h4 id="3215-sequence-daigram-for-check-in-for-a-customer-user">3.2.15 Sequence Daigram for check in for a Customer User</h4>
+<pre class="hljs"><code><div>@startuml
+actor Customer #red
+
+ Customer--&gt; UI : Open the UI
+UI --&gt; Customer : Responds back with the check-in Page
+Customer --&gt; UI : Slects Check-in Page
+UI --&gt; Customer : Responds back with the Check-in  Page
+CUstomer --&gt; UI : See check-in information
+UI --&gt; API : Verify User chek-in
+API --&gt; Database : Check all informations
+alt Auth Passed
+
+    Database -&gt; API: Authentication Accepted
+    API -&gt; UI : Check-in Successful
+    UI -&gt; Customer : Check-in sucessful Prompt
+
+else Auth Failed
+
+    Database -&gt; API: Authentication Failure
+    API -&gt; UI : Check-in Failed
+    UI -&gt; customer : Retry page
+
+end
+
+@enduml
+</div></code></pre>
+<h4 id="3216-sequence-daigram-for-check-out-for-a-customer-user">3.2.16 Sequence Daigram for check-out for a Customer User</h4>
+<pre class="hljs"><code><div>@startuml
+actor Customer #red
+
+ Customer--&gt; UI : Open the UI
+UI --&gt; Customer : Responds back with the check-out Page
+Customer --&gt; UI : Slects Check-out Page
+UI --&gt; Customer : Responds back with the Check-out Page
+CUstomer --&gt; UI : See check-out information
+UI --&gt; API : Verify User chek-out
+API --&gt; Database : Check all informations
+alt Auth Passed
+
+    Database -&gt; API: Authentication Accepted
+    API -&gt; UI : Check-out Successful
+    UI -&gt; Customer : Check-out sucessful Prompt
+
+else Auth Failed
+
+    Database -&gt; API: Authentication Failure
+    API -&gt; UI : Check-out Failed
+    UI -&gt; Customer : Retry page
+
+end
+
+@enduml
+</div></code></pre>
+<h4 id="3217-sequence-daigram-for-unique-advantage-for-a-customer-user">3.2.17 Sequence Daigram for unique advantage for a Customer User</h4>
+<pre class="hljs"><code><div>@startuml
+actor Customer #red
+
+ Customer--&gt; UI : Open the UI
+UI --&gt; Customer : Responds back with the Unique advantage Page
+Customer --&gt; UI : Slects Unique-Advantage Page
+UI --&gt; Customer : Responds back with the Unique Advantage  Page
+CUstomer --&gt; UI : Check unique advantage information
+UI --&gt; API : Verify User booking details
+API --&gt; Database : Check user booking either frequently or usually
+alt Auth Passed
+
+    Database -&gt; API: Authentication Accepted
+    API -&gt; UI : Unique advantage Successful
+    UI -&gt; Customer : Unique advantage sucessful Prompt
+
+else Auth Failed
+
+    Database -&gt; API: Authentication Failure
+    API -&gt; UI : Unique advantage Failed
+    UI -&gt; Customer : Retry page
+
+end
+
+@enduml
+</div></code></pre>
+<h3 id="33-activity-daigram"><strong>3.3 Activity Daigram</strong></h3>
+<h4 id="331-activity-daigram-for-user-login">3.3.1 Activity Daigram for User Login</h4>
+<pre class="hljs"><code><div>@startuml
+start
+:User Inputs Login details;
+:API Server Recives information;
+if (Database Approves) then (Approve Authentication)
+  :Login Successful;
+else
+:Login Failed;
+endif
+stop
+
+@enduml
+</div></code></pre>
+<h4 id="332-activity-daigram-for-user-sign-up">3.3.2 Activity Daigram for User sign-up</h4>
+<pre class="hljs"><code><div>@startuml
+start
+:User Inputs Sign-up details;
+:API Server Recives information;
+if (Database Approves) then (Approve Authentication)
+  :Sign-up Successful;
+else
+:Sign-up Failed;
+endif
+stop
+
+@enduml
+</div></code></pre>
+<h4 id="333-activity-daigram-for-user-logout">3.3.3 Activity Daigram for User LogOut</h4>
+<pre class="hljs"><code><div>@startuml
+start
+:User Inputs Logout details;
+:API Server Recives information;
+if (Database Approves) then (Approve Authentication)
+  :Logout Successful;
+else
+:Logout Failed;
+endif
+stop
+
+@enduml
+</div></code></pre>
+<h4 id="334-activity-daigram-for-user-create-booking">3.3.4 Activity Daigram for User create booking</h4>
+<pre class="hljs"><code><div>@startuml
+start
+:User Inputs booking details;
+:API Server Recives information;
+if (Database Approves) then (Approve Authentication)
+  :booking Successful;
+else
+:booking Failed;
+endif
+stop
+
+@enduml
+</div></code></pre>
+<h4 id="335-activity-daigram-for-user-cancel-booking">3.3.5 Activity Daigram for User cancel booking</h4>
+<pre class="hljs"><code><div>@startuml
+start
+:User Inputs bookig details;
+:API Server Recives information;
+if (Database Approves) then (Approve Authentication)
+  :booking cancelling Successful;
+else
+:booking cancelling Failed;
+endif
+stop
+
+@enduml
+</div></code></pre>
+<h4 id="335-activity-daigram-for-user-update-booking">3.3.5 Activity Daigram for User update booking</h4>
+<pre class="hljs"><code><div>@startuml
+start
+:User Inputs booking details;
+:API Server Recives information;
+if (Database Approves) then (Approve Authentication)
+  :booking updation Successfull;
+else
+:booking updation Failed;
+endif
+stop
+
+@enduml
+</div></code></pre>
+<h4 id="336-activity-daigram-for-user-forget-password">3.3.6 Activity Daigram for User forget password</h4>
+<pre class="hljs"><code><div>@startuml
+start
+:User Inputs email details;
+:API Server Recives information;
+if (Database Approves) then (Approve Authentication)
+  :showing password;
+else
+:password showing Failed;
+endif
+stop
+
+@enduml
+</div></code></pre>
+<h4 id="337-activity-daigram-for-add-hotel">3.3.7 Activity Daigram for Add hotel</h4>
+<pre class="hljs"><code><div>@startuml
+start
+:User Inputs add hotel details;
+:API Server Recives information;
+if (Database Approves) then (Approve Authentication)
+  :Add hotel Successful;
+else
+:Add hotel Failed;
+endif
+stop
+
+@enduml
+</div></code></pre>
+<h4 id="338-activity-daigram-for-user-update-hotel">3.3.8 Activity Daigram for User update hotel</h4>
+<pre class="hljs"><code><div>@startuml
+start
+:User Inputs update hotel details;
+:API Server Recives information;
+if (Database Approves) then (Approve Authentication)
+  :Hotel updation Successful;
+else
+:Hotel updation Failed;
+endif
+stop
+
+@enduml
+</div></code></pre>
+<h4 id="339-activity-daigram-for-user-booking-history">3.3.9 Activity Daigram for User booking history</h4>
+<pre class="hljs"><code><div>@startuml
+start
+:User Inputs booking history details;
+:API Server Recives information;
+if (Database Approves) then (Approve Authentication)
+  :booking history Successful;
+else
+:booking history Failed;
+endif
+stop
+
+@enduml
+</div></code></pre>
+<h4 id="3310-activity-daigram-for-user-check-in">3.3.10 Activity Daigram for User check-in</h4>
+<pre class="hljs"><code><div>@startuml
+start
+:User Inputs check-in details;
+:API Server Recives information;
+if (Database Approves) then (Approve Authentication)
+  :check-in Successful;
+else
+:check-in Failed;
+endif
+stop
+
+@enduml
+</div></code></pre>
+<h4 id="3311-activity-daigram-for-user-check-out">3.3.11 Activity Daigram for User check-out</h4>
+<pre class="hljs"><code><div>@startuml
+start
+:User Inputs check-out details;
+:API Server Recives information;
+if (Database Approves) then (Approve Authentication)
+  :check-out Successful;
+else
+:check-out Failed;
+endif
+stop
+
+@enduml
+</div></code></pre>
+<h4 id="3312-activity-daigram-for-user-add-hotel-as-quarentine-center">3.3.12 Activity Daigram for User add hotel as Quarentine center</h4>
+<pre class="hljs"><code><div>@startuml
+start
+:User Inputs select Quarentine center details;
+:API Server Recives information;
+if (Database Approves) then (Approve Authentication)
+  :Add hotel as Quarentine center Successful;
+else
+:Add hotel as Quarentine center Failed;
+
+endif
+stop
+
+@enduml
+</div></code></pre>
+<h4 id="3313-activity-daigram-for-user-feedback-mail-after-check-out">3.3.13 Activity Daigram for User Feedback mail after check-out</h4>
+<pre class="hljs"><code><div>@startuml
+start
+:User Inputs check-out details and send a feedback mail;
+:API Server Recives information;
+if (Database Approves) then (Approve Authentication)
+  :send feedback mail Successful;
+else
+:send feedback mail  Failed;
+endif
+stop
+
+@enduml
+</div></code></pre>
+<h4 id="3314-activity-daigram-for-user-unique-advantage">3.3.14 Activity Daigram for User Unique Advantage</h4>
+<pre class="hljs"><code><div>@startuml
+start
+:User Inputs booking history details and frequent customer has unique advantage;
+:API Server Recives information;
+if (Database Approves) then (Approve Authentication)
+  :unique advantage Successful;
+else
+:unique advantage  Failed;
+endif
+stop
+@enduml
+</div></code></pre>
+<h3 id="34-component-daigram"><strong>3.4 Component Daigram</strong></h3>
+<pre class="hljs"><code><div>component as [Hotel-Mangement-UI]
+component as [Hotel-Mangement-API]
+</div></code></pre>
+<h3 id="35-flowchart"><strong>3.5 Flowchart</strong></h3>
+<h4 id="351-flowchart-for-a-customer">3.5.1  Flowchart for a Customer</h4>
+<pre class="hljs"><code><div>@startuml
+:Customer;  
+   fork
+   :New Customer in our System;
+   :Sign-up; 
+   :Searching hotels;
+   :Create-booking;
+   :go to booking-history page;
+   :log-out;
+stop
+ fork again
+   :Already a customer in our system;
+   :Log-in;
+    fork 
+   :Searching hotels;
+   :Create-booking;
+   :go to booking-history page;
+   :log-out;
+stop
+    fork again
+     :cancel booking;
+     :booking-history page;
+     :booking-cancelled;
+     :booking-history page;
+     :log-out;
+stop
+    fork again
+     :update booking;
+    :booking history page;
+    :booking-updated;
+    :log-out;
+stop
+    fork again
+    :forget password;
+    : go to forget-password page;
+     :give registered emailid;
+     :show password;    
+stop     
+@enduml
+</div></code></pre>
+<h4 id="352-flowchart-for-an-admin-in-our-system">3.5.2 Flowchart for an Admin in our System</h4>
+<pre class="hljs"><code><div>@startuml
+:Admin; 
+   fork
+   :New Admin in our System;
+   :Sign-up; 
+   :Add hotels;
+   :give informations;
+   :Hotel Added;
+   :log-out;
+stop
+ fork again
+   :Already an Admin in our system;
+   :Log-in;
+    fork 
+   :Add hotels;
+   :Give information;
+   :Hotel Added;
+   :log-out;
+stop
+    fork again
+     :Update hotel
+     :give information;
+     :Hotel updated;
+     :log-out;
+stop
+    fork again
+    :booking history page;
+    :log-out;
+stop
+@enduml
+</div></code></pre>
+<h2 id="4-user-journeys"><strong>4. User Journeys</strong></h2>
+<h3 id="41-current-requierments">4.1 Current Requierments</h3>
+<h4 id="411-customer-sign-up-and-login">4.1.1 Customer sign up and login</h4>
+<p>A User, who is a normal customer for the Hotel Management system that we are creating should be allowed to create a unique session upon Login. If a customer does not have an account on the system, then he should be allowed to sign up with his own unique email id which has used for registration previously. He should add the details requested along with a valid 10 digit mobile number and a password that is Alphanumeric and contains atleast 8 letters, a special character and 3 digits.</p>
+<h3 id="412-admin-signup-and-login">4.1.2 Admin Signup and login</h3>
+<p>A User, who is a normal Admin for the Hotel Management system that we are creating should be allowed to create a unique session upon Login. If a customer does not have an account on the system, then he should be allowed to sign up with his own unique email id which has used for registration previously. He should add the details requested along with a valid 10 digit mobile number and a password that is Alphanumeric and contains atleast 8 letters, a special character and 3 digits.</p>
+<h4 id="413-customer-logout">4.1.3 Customer logout</h4>
+<p>A User, who is a  customer for the Hotel Management system want to logout from our website simply click on logout button , a message is shown in our website he is logged-out sucessfully.
+Then ,when he can book any hotel through our website in future, he must be signup in our website as above mentioned  process ,it is mandatory for all customer.</p>
+<h4 id="414-admin-logout">4.1.4 Admin logout</h4>
+<p>A User, who is an Admin for the Hotel Management system want to logout from our website simply click on logout button , a message is shown in our website he is logged-out sucessfully.
+Then ,when he can book any hotel through our website in future, he must be signup in our website as above mentioned  signuprocess ,it is mandatory for all customer.</p>
+<h4 id="415-customer-create-booking-update-booking-canccel-booking">4.1.5 Customer create booking ,update booking, canccel booking</h4>
+<p>A User, who is a customer for the Hotel Management system want to book a hotel in any place,at first he can choice any hotel, if he founds a Quarentine center then it is avaliable in our aystem also.He choices a hotel  and sees the hotel rent per day then goes to the create booking page and fills the all necessary informations, he adds his name, registered emailid,contact number etc and books a hotel sucessfully.After,he wants to update his booking (change hotel,change booking date etc)simply goes to the update booking page and then fills all informations or change some information and updates booking sucessfully.The Customrer somehow wants to cancel his booking goes to the cancel booking page and simply clicks on cancel booking link and a message is shown in our website and then checks the booking history page to see there must be no booking is avaliable there.</p>
+<h4 id="416-admin-add-hotel-update-hotel-manage-hotel">4.1.6 Admin Add hotel ,update hotel, manage hotel</h4>
+<p>A User, who is an Admin for the Hotel Management system want to add a hotel in any place,at first he wants to add  any hotel, if he adds this hotel as a Quarentine center then selects the option Quarentine center .He adds a hotel  and also add the hotel rent per day then goes to the add hotel page and fills the all necessary informations, he adds his name, registered emailid,contact number etc and adds a hotel sucessfully.After,he wants to update his hotel or add some new hotel(change hotel,change anything etc)simply goes to the update hotel page and then fills all informations or change some information and updates hotel sucessfully.The Admin always sees the customer's booking history to go to the booking history page to manage his hotel's room free in customer's check-in time and also gave reminder to customer in his check-out time.</p>
+<h4 id="417-customer-checck-in-and-check-out">4.1.7 Customer checck in and check out</h4>
+<p>Check-in is used to admit a customer in our Hotel after entering his all personal details like Name, Address, Phone, Sex and then he/she is assigned a room.Check-out is used to checkout the customer details from database. When the user inputs his room number, the same room number will be checked in the database, if the room number is matched in the database, then the customer will be check-out from the database and transferred the record of the checkout to another table of database so that the Hotel Management has the record of customers who have check-out to fulfill his legal liabilities.</p>
+<h4 id="418-listing-of-avaliable-hotels">4.1.8 Listing of avaliable hotels</h4>
+<p>A User, who is a customer for the Hotel Management system want to see list of avaliable hotels in different cities,different places simply go to our hotel front page and choose any place as his wish,there many places hotels are avaliable and see all hotels images,name,rent per day ,and also see the hotel is either Quarentine center or not.</p>
+<h3 id="42-future-application">4.2 Future Application</h3>
+<h4 id="421--unique-advantage">4.2.1 #### Unique Advantage</h4>
+<p>Any Customers who book hotels by our website frequently ,they have a unique advantage by our side. A customer who books our hotel 5th times,when he books hotel at 6th times ,he gets 5% discount from our side and also a customer who books our hotel 10th times,when he books hotel at 11th times ,he gets 15% discount from our side.</p>
+<h4 id="422-feedback-page">4.2.2 Feedback page</h4>
+<p>Customers have a feedback mail after check-out from hotels to give any feedback message to us ,they log in by their registered email and password and give messages how is the food,how our services write through feedback page to us.</p>
+<h4 id="423-generate-bill">4.2.3 Generate bill</h4>
+<p>When any customer check-out, his/her bill is generated automatically by calculated check-out date minus check-in date and getting multiplied it by daily room charge plus other charges and the bill has to be saved in the table in the database.</p>
+<h3 id="43-scope-of-improvement">4.3 Scope of Improvement</h3>
+<p>Now a days hotel are providing many other facilities, this project can also be improved with the improvement in the Hotels.Utmost care and back-up procedures must be established to ensure 100% successful implementation of the computerized banking system. In case of system failure, the organization should be in a position to process the transaction with another organization or if the worst comes to the worst, it should be in a position to complete it manually</p>
+<h2 id="5conclusion">5.<strong>CONCLUSION</strong></h2>
+<p>This project is designed to meet the requirements of Online Hotel Managent System.
+For designing the system we have used simple diagrams.
+overall the project teaches us the essential skills like:
+Using system analysis and design techniques like usercase diagramagram ,sequence diagram,Activity Diagram etc in designing the system.
+Understanding the database handling and query processing</p>
+<h4 id="reference">REFERENCE</h4>
+<ol>
+<li>https://www.w3schools.com/</li>
+<li>https://www.javatpoint.com/</li>
+</ol>
+
+</body>
+</html>

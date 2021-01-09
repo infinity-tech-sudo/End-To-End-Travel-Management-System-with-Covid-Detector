@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <title>Infinity.com/Signup/</title>
+    <style>
+        input[type=text], select {
+          width: 100%;
+          padding: 12px 20px;
+          margin: 8px 0;
+          display: inline-block;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          box-sizing: border-box;
+        }
+        input[type=submit] {
+            width: 100%;
+            background-color: #4CAF50;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+button:hover {
+  opacity: 0.8;
+}
+
+.cancelbtn {
+  width: auto;
+  padding: 10px 18px;
+  background-color: #f44336;
+}
+
+       div {
+            border-radius: 5px;
+            background-color: #f2f2f2;
+            padding: 20px;
+        }
+
+    </style>
+    <script>
+      function validateForm() {
+        var x = document.forms["myForm"]["fname"].value;
+        if (x == "") {
+          alert("First name is missing!!please put your first name");
+          return false;
+        }
+        var x = document.forms["myForm"]["lname"].value;
+        if (x == "") {
+          alert("Last name id is missing!!please put your Your last name");
+          return false;
+        }
+        var x = document.forms["myForm"]["emailid"].value;
+        if (x == "") {
+          alert("email id is missing!!please put your emailid");
+          return false;
+        }
+        var x = document.forms["myForm"]["mono"].value;
+        if (x == "") {
+          alert("Mobile no is missing!!please put your Mobile no");
+          return false;
+        }
+        var x = document.forms["myForm"]["password"].value;
+        if (x == "") {
+          alert("Password is missing!!please put your Password");
+          return false;
+        } 
+      }
+      </script>
+    </head>
+    <body>
+        <h1 style="background-color:rgb(9, 47, 71);color:white;padding:20px;">Infinity...</h1>
+        <h3><i>Trusted hotels booking site....</i></h3>
+<div>
+  <form name="myForm" onsubmit="return validateForm()" action="hotelmanagersignup.php" method="post">
+    <label for="fname">First Name :</label>
+    <input type="text" id="fname" name="fname" placeholder="Your First name..">
+    <label for="lname">Last Name :</label>
+    <input type="text" id="lname" name="lname" placeholder="Your Last name..">
+    <label for="emailid">Email id :</label>
+    <input type="text" id="emailid" name="emailid" placeholder="Your Email id..">
+    <label for="mono">Mobile no :</label>
+    <input type="text" id="mono" name="mono" placeholder="Your Mobile no..">
+    <label for="password">Password</label>
+    <input type="text" id="password" name="password" placeholder="Your password..">
+    <label>
+      <input type="checkbox" checked="checked" name="terms"> I accept terms & conditions
+    </label>
+    <input type="submit" id = "submit"  value="Submit">
+      <div class="container" style="background-color:#f1f1f1">
+        <button type="reset" value= "Reset" class="cancelbtn">Cancel</button>
+    </div>
+
+  </form>
+</div>
+ </body>
+ </html>

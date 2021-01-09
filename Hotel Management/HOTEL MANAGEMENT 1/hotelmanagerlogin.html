@@ -1,0 +1,92 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+    <title>Infinity.com/login/</title>
+    <style>
+        input[type=text], select {
+          width: 100%;
+          padding: 12px 20px;
+          margin: 8px 0;
+          display: inline-block;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          box-sizing: border-box;
+        }
+        input[type=submit] {
+            width: 100%;
+            background-color: #4CAF50;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+button:hover {
+  opacity: 0.8;
+}
+
+.cancelbtn {
+  width: auto;
+  padding: 10px 18px;
+  background-color: #f44336;
+}
+.container {
+  padding: 16px;
+}
+
+span.psw {
+  float: right;
+  padding-top: 16px;
+}
+       div {
+            border-radius: 5px;
+            background-color: #f2f2f2;
+            padding: 20px;
+        }
+      
+    </style>
+    <script>
+      function validateForm() {
+        var x = document.forms["myForm"]["emailid"].value;
+        if (x == "") {
+          alert("email id is missing!!please put your emailid");
+          return false;
+        }
+        var x = document.forms["myForm"]["password"].value;
+        if (x == "") {
+          alert("Password is missing!!please put your Password");
+          return false;
+        } 
+      }
+      </script>
+    </head>
+    <body>
+      <h1 style=" top: 8px;
+        left: 16px;color:rgb(128, 25, 25);padding:0px; font-size: 60px;"><b>Infinity...</b></h1>
+        <marquee behavior="scroll" direction="right"  style=" top: 8px;
+        left: 16px;color:rgb(37, 7, 65);padding:0px; font-size: 40px;">Best website for managing your hotel!</marquee>
+
+<div>
+  <form name="myForm" onsubmit="return validateForm()" action = "hotelmanagerloginvalidate.php" method = "POST">
+    <label for="emailid">email id of Hotel manager</label>
+    <input type="text" id="emailid" name="emailid" placeholder="Your registered email id..">
+
+    <label for="password">Password</label>
+    <input type="text" id="password" name="password" placeholder="Your password..">
+
+    <input type="submit" value="submit">
+    <label>
+        <input type="checkbox" checked="checked" name="remember"> Remember me
+      </label>
+    </div>
+  
+    <div class="container" style="background-color:#f1f1f1">
+      <button type="reset" value ="Reset" class="cancelbtn">Cancel</button>
+      <span class="psw">Forgot <a href="forgetpassword.html";>password?</a></span>
+    </div>
+  </form>
+</div>
+ </body>
+ </html>
